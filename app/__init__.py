@@ -1,7 +1,7 @@
 import os
 import json
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from peewee import MySQLDatabase
 from playhouse.shortcuts import model_to_dict
 
@@ -57,3 +57,9 @@ def get_posts():
     posts = [model_to_dict(p) for p in found_posts]
 
     return { "posts": posts }
+
+
+@app.route("/api/delete_posts", methods=["DELETE"])
+def delete_posts():
+    Post.delete().execute()
+    return redirect("/api/get_posts")
