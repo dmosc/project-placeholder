@@ -1,0 +1,22 @@
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.create-post-container {
+  display: block;
+  width: 40vw;
+  border-radius: var(--border-radius);
+}
+
+.create-post-card {
+  display: block;
+  margin: 0 auto;
+}
+
+.create-post-form {
+  display: inherit;
+  margin: inherit;
+  padding: 20px;
+  background-color: var(--yellow);
+}

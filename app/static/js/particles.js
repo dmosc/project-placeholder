@@ -62,7 +62,7 @@ window.addEventListener("resize", () => {
  * Animation cycle.
  */
 let rotateFactor = 1;
-document.getElementById("profile-section").addEventListener("scroll", () => {
+document.getElementById("scrollable-section").addEventListener("scroll", () => {
   rotateFactor = 20;
   setTimeout(() => (rotateFactor = 1), 0);
 });

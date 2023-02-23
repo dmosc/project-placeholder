@@ -47,7 +47,6 @@ body {
   text-decoration: none;
 
   color: var(--lightgrey);
-
 }
 
 .navbar-content {
@@ -76,12 +75,9 @@ body {
   padding: 0px 20px;
 }
 
-
 .nav-links li a:hover {
-
-color: var(--yellow)
+  color: var(--yellow);
 }
-
 
 /* Map styles */
 .map-section {
@@ -107,13 +103,9 @@ color: var(--yellow)
   width: 100%;
 }
 
-
-/* Profile section styles */
-.profile-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: calc(var(--padding) * 5) 0;
+/* scrollable section styles */
+.scrollable-section {
+  display: block;
   overflow: scroll;
   height: 85vh;
 }
