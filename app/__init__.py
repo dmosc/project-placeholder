@@ -2,7 +2,6 @@ import os
 import json
 
 from flask import Flask, render_template, request, redirect
-from peewee import MySQLDatabase
 from playhouse.shortcuts import model_to_dict
 
 from app.database.lib import Database
