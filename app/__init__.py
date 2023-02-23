@@ -10,8 +10,6 @@ from app.database.models.post import Post
 
 app = Flask(__name__)
 database = Database.get_instance()
-
-database.connect()
 database.create_tables([Post])
 
 @app.route('/')
