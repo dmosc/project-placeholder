@@ -8,7 +8,7 @@ from app.database.lib import Database
 
 
 class BaseModel(Model):
-  created_at = DateTimeField(default=datetime.now)
+    created_at = DateTimeField(default=datetime.now)
 
-  class Meta:
-    database = Database.get_instance()
+    class Meta:
+        database = Database.get_instance()
