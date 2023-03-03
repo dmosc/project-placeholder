@@ -5,6 +5,6 @@ from app.database.models.base_model import BaseModel
 
 
 class Post(BaseModel):
-  name = CharField()
-  email = CharField()
-  content = CharField()
+    name = CharField()
+    email = CharField()
+    content = CharField()

@@ -12,6 +12,7 @@ app = Flask(__name__)
 database = Database.get_instance()
 database.create_tables([Post])
 
+
 @app.route('/')
 def index():
     with open("app/data.json") as file:
@@ -50,7 +51,7 @@ def get_posts():
     found_posts = Post.select().order_by(Post.created_at.desc())
     posts = [model_to_dict(p) for p in found_posts]
 
-    return { "posts": posts }
+    return {"posts": posts}
 
 
 @app.route("/api/delete_posts", methods=["DELETE"])
