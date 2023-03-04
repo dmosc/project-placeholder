@@ -1,5 +1,6 @@
 import os
 import json
+import re
 
 from flask import Flask, render_template, request, redirect
 from playhouse.shortcuts import model_to_dict
@@ -11,6 +12,14 @@ from app.database.models.post import Post
 app = Flask(__name__)
 database = Database.get_instance()
 database.create_tables([Post])
+
+
+def is_email_valid(email):
+    regex = r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+    if (re.search(regex, email)):
+        return True
+    else:
+        return False
 
 
 @app.route('/')
@@ -39,10 +48,20 @@ def timeline_view():
 
 @app.route("/api/create_post", methods=["POST"])
 def create_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
-    post = Post.create(name=name, email=email, content=content)
+    if "name" in request.form and "email" in request.form and "content" in request.form:
+        name = request.form['name']
+        email = request.form['email']
+        content = request.form['content']
+
+        if len(name) == 0 or len(email) == 0 or len(content) == 0:
+            return "attributes cannot be empty", 400
+
+        if not is_email_valid(email):
+            return "email is malformed", 400
+    else:
+        return "missing attribute", 400
+
+    Post.create(name=name, email=email, content=content)
     return redirect("/timeline")
 
 
