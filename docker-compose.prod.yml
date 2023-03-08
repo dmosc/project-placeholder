@@ -1,0 +1,42 @@
+version: "3"
+services:
+  mysql:
+    container_name: mysql
+    image: mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - projectplaceholderdb:/var/lib/mysql
+
+  projectplaceholder:
+    container_name: projectplaceholder
+    depends_on:
+      - mysql
+    build: .
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - .:/tmp
+
+  nginx:
+    depends_on:
+      - projectplaceholder
+    container_name: nginx
+    image: jonasal/nginx-certbot
+    restart: always
+    environment:
+      - CERTBOT_EMAIL=name@example.com
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - nginx_secrets:/etc/letsencrypt
+      - ./user_conf.d:/etc/nginx/user_conf.d
+
+volumes:
+  projectplaceholderdb:
+  nginx_secrets:
