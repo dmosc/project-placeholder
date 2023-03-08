@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mysql:
+    container_name: mysql
+    image: mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - projectplaceholderdb:/var/lib/mysql
+
+  projectplaceholder:
+    depends_on:
+      - mysql
+    build: .
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - 5001:5000
+    volumes:
+      - .:/tmp
+
+volumes:
+  projectplaceholderdb:
