@@ -1,8 +1,8 @@
 import os
 
+from peewee import MySQLDatabase, SqliteDatabase
 
 from app.lib.secrets_manager import SecretsManager
-from peewee import MySQLDatabase, SqliteDatabase
 
 
 class Database(object):
