@@ -1,0 +1,19 @@
+name: Deploy project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Run deployment script
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into remote server
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: sh ~/repos/project-placeholder/app/scripts/redeploy.sh
