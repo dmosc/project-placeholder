@@ -16,4 +16,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          script: sh ~/repos/project-placeholder/app/scripts/redeploy.sh
+          script: |
+            sh ~/repos/project-placeholder/app/scripts/redeploy.sh
+            docker compose ps
+            curl -fsSL -X POST ${{ secrets.DISCORD_WEBHOOK }} -d "content=Successfully deployed project 🚀"
